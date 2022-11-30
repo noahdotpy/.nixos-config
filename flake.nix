@@ -1,10 +1,10 @@
 {
-  description = "A very basic flake";
+  description = "noahdotpy's very own home baked ( + some stolen dough ) NixOS config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; 
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11"; 
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; 
 
     home-manager = {
       url = "github:nix-community/home-manager";
