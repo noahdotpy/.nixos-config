@@ -191,26 +191,12 @@ in
     };
   };
 
-  # Define a user account. Don't forget to set a password with `passwd` post-install.
-  users = {
-    extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
-
-    users = {
-      noah = {
-        isNormalUser = true;
-        initialPassword = "temp";
-        extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-        shell = pkgs.zsh;
-      };
-    };
-  };
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # Allow unfree packages
   nixpkgs.config = {
-
     allowUnfree = true;
     allowUnfreePredicate = _: true;
-
   };
 
   # Optimise store
