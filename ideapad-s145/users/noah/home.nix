@@ -11,8 +11,12 @@ in
       # ./apps/text-editors/neovim
   ];
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = _: true;
+  nixpkgs.config = {
+
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+    
+  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

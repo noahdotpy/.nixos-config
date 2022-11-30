@@ -206,8 +206,12 @@ in
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = _: true;
+  nixpkgs.config = {
+
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+
+  };
 
   # Optimise store
   nix.settings.auto-optimise-store = true;
