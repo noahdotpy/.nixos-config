@@ -47,6 +47,10 @@ in
       };
       timeout = 5;
     };
+    
+    # Fancy loading screen showing up instead of hacker man text
+    plymouth.enable = true; 
+
   };
 
   networking = {
@@ -226,6 +230,10 @@ in
     pkgs.wget
     pkgs.curl
     pkgs.git
+    
+    pkgs.atuin
+    pkgs.pfetch
+    pkgs.starship
 
     pkgs.pinentry
     pkgs.gnome.dconf-editor
