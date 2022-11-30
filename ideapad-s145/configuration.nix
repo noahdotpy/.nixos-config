@@ -45,7 +45,7 @@ in
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
-      timeout = 1;
+      timeout = 5;
     };
   };
 
@@ -106,25 +106,12 @@ in
       layout = "au";
       xkbVariant = "";
       
-      # Enable the KDE Plasma Desktop Environment.
       displayManager = {
         # sddm.enable = true;
         gdm.enable = true;
-        defaultSession = "none+bspwm";
       };
       desktopManager = {
-        plasma5.enable = true;
         gnome.enable = true;
-      };
-
-      # Enable all the (nerdy) window managers.
-      windowManager = {
-        # Dynamic tiling
-        qtile = { enable = true; };
-        leftwm = { enable = true; };
-        # Manual tiling
-        bspwm = { enable = true; };
-        # Floating
       };
     };
 
@@ -165,18 +152,12 @@ in
 
     kdeconnect.enable = true;
 
-    fish.enable = true;
     zsh = {
       enable = true;
-      enableCompletion = true;
-      autosuggestions.enable = true;
-      ohMyZsh = {
-        enable = true;
-      };
     };
     starship.enable = true;
 
-	neovim.enable = true;
+    neovim.enable = true;
 
   };
 
@@ -236,89 +217,21 @@ in
   # $ nix search wget
   environment.systemPackages = [
     # Internet
-    pkgs.librewolf
-    pkgs.wget
-    pkgs.curl
+    pkgs.firefox
 
     # Multi-media
     pkgs.vlc
-    pkgs.pulseaudio
-    
-    # Text Editors
-    pkgs.micro
-    pkgs.vim
-    # pkgs.neovim
-    pkgs.notepadqq
-    
-    # CLI/TUI
-    pkgs.htop
-    pkgs.duplicity  
-    pkgs.playerctl
-    pkgs.brightnessctl
-    pkgs.pulsemixer
-    pkgs.acpi
-    pkgs.git
-    pkgs.feh
-    pkgs.gnupg
-    pkgs.gdu
-    pkgs.ripgrep
-    pkgs.ranger
-    pkgs.pfetch
 
     # Tools
-    pkgs.ark
-    pkgs.ksnip
-    pkgs.unzip
-    pkgs.zip
+    pkgs.wget
+    pkgs.curl
+    pkgs.git
+
     pkgs.pinentry
     pkgs.gnome.dconf-editor
-    pkgs.bitwarden # awesome password manager
 
-    # STANDALONE WINDOW MANAGER PROGRAMS
-    # apps
-    pkgs.gnome.nautilus
-    # bars
-    pkgs.eww
-    pkgs.polybar
-    # rofi
-    pkgs.rofi
-    pkgs.rofi-emoji
-    # compositors
-    pkgs.picom
-    # tools
-    pkgs.haskellPackages.greenclip
-    pkgs.sxhkd # hotkey daemon
-    pkgs.nitrogen
-    # notifications
-    pkgs.dunst
-    # lock
-    pkgs.i3lock-color
-    pkgs.xlockmore
-    
-    # Libraries/Programming Languages
-    pkgs.libsForQt5.kdialog
-    pkgs.libsForQt5.kgpg
-    pkgs.libnotify
-    pkgs.gcc
-    pkgs.glibc
-    pkgs.python311
-    pkgs.cargo
-    pkgs.rustc
-    pkgs.clippy
-    pkgs.rustfmt
-
-    # LSP
-    pkgs.rnix-lsp # Nix
-    pkgs.sumneko-lua-language-server # Lua
-    pkgs.nodePackages.pyright # Python
-    # pkgs.nodePackages_latest.typescript-language-server # Typescript
-
-    # GNOME Extensions
-    pkgs.gnomeExtensions.just-perfection
-    pkgs.gnomeExtensions.pop-shell
-
-    # Miscellaneous
-    pkgs.onlyoffice-bin
+    # Gnome
+    pkgs.gnome-menus # needed for arc menu extension
   ];
 
   # This value determines the NixOS release from which the default
