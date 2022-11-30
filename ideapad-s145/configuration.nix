@@ -1,5 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
 { config, pkgs, inputs, ... }:
@@ -13,8 +12,8 @@ in
 {
   imports =
   [
-    ./hardware-configuration.nix  # Include the results of the hardware scan.
-    ./users/noah              # Enables user: noah
+    ./hardware-configuration.nix
+    ./users/noah
   ];
 
   fonts = {
@@ -48,7 +47,7 @@ in
       timeout = 5;
     };
     
-    # Fancy loading screen showing up instead of hacker man text
+    # Fancy loading screen showing up instead of hacker man text at shutdown and startup
     plymouth.enable = true; 
 
   };
@@ -59,17 +58,7 @@ in
 
     # Enable networking
     networkmanager.enable = true;
-
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
-
+    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     firewall.enable = true;
 
   };
@@ -110,28 +99,8 @@ in
       layout = "au";
       xkbVariant = "";
       
-      displayManager = {
-        # sddm.enable = true;
-        gdm.enable = true;
-      };
-      desktopManager = {
-        gnome.enable = true;
-      };
-    };
-
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
     };
 
   };
@@ -147,14 +116,11 @@ in
     gnupg.agent = {
       enable = true;
       pinentryFlavor = "gnome3";
-      # enableSSHSupport = true;
     };
 
     dconf.enable = true;
 
-    zsh = {
-      enable = true;
-    };
+    zsh.enable = true;
 
     neovim.enable = true;
 
@@ -164,6 +130,16 @@ in
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+  };
 
   # Enable bluetooth.
   hardware.bluetooth.enable = true;
@@ -173,8 +149,10 @@ in
   };
 
   # Enable virtualisation.
-  virtualisation.libvirtd.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    virtualbox.host.enable = true;
+  };
 
   # Change mouse and touchpad settings for X11
   services.xserver.libinput = {
@@ -193,17 +171,14 @@ in
 
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
-  # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    allowUnfreePredicate = _: true;
+    allowUnfreePredicate = _: true; # added due to something broke 
   };
 
-  # Optimise store
   nix.settings.auto-optimise-store = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Packages you want to be installed in the system profile.
   environment.systemPackages = [
     # Internet
     pkgs.firefox
@@ -223,8 +198,8 @@ in
     pkgs.pinentry
     pkgs.gnome.dconf-editor
 
-    # Gnome
-    pkgs.gnome-menus # needed for arc menu extension
+    # Libraries
+    pkgs.gnome-menus # needed for arc menu extension to work
   ];
 
   # This value determines the NixOS release from which the default
