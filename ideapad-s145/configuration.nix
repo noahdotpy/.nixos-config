@@ -139,8 +139,6 @@ in
 
   programs = {
 
-    nm-applet.enable = true;
-
     ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
     # Some programs need SUID wrappers, can be configured further or are
@@ -154,12 +152,9 @@ in
 
     dconf.enable = true;
 
-    kdeconnect.enable = true;
-
     zsh = {
       enable = true;
     };
-    starship.enable = true;
 
     neovim.enable = true;
 
@@ -181,7 +176,7 @@ in
   virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
+  # Change mouse and touchpad settings for X11
   services.xserver.libinput = {
     enable = true;
 

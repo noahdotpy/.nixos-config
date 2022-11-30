@@ -1,5 +1,5 @@
 let
-  browser = [ "librewolf.desktop" ];
+  browser = [ "firefox.desktop" ];
   editor = [ "nvim" ];
 
   xdgAssociations = {
@@ -32,8 +32,8 @@ in {
   home.sessionVariables = {
     BROWSER = browser;
     EDITOR = editor;
-    TERMINAL = "kitty";
-    TERM = "kitty";
+    TERMINAL = "kgx";
+    TERM = "xterm";
   };
 
   xdg.mimeApps.enable = true;

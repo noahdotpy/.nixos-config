@@ -33,7 +33,6 @@ in
   home.packages = [
       pkgs.vscode
       pkgs.kate
-      pkgs.pika-backup
       pkgs.adw-gtk3
   ];
   
