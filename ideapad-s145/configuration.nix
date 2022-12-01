@@ -19,96 +19,65 @@ in
   fonts = {
     fontDir.enable = true;
     enableDefaultFonts = true;
-    fonts = [
-      (pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; })
-    ];
+    fonts = [(pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; })];
   };
 
   boot = {
-
     # Enable the bootloader.
     loader = {
-
-      systemd-boot = {
-        enable = true;
-      };
-
-      # grub = {
-      #   enable = true;
-      #   efiSupport = true;
-      #   device = "nodev";
-      #   efiInstallAsRemovable = true;
-      # };
-
+      systemd-boot.enable = true;
+      timeout = 5;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
-      timeout = 5;
     };
-    
-    # Fancy loading screen showing up instead of hacker man text at shutdown and startup
-    plymouth.enable = true; 
-
+    plymouth.enable = true; # Fancy loading screen at computer startup/shutdown
   };
 
+  # Enable networking
   networking = {
-
     hostName = "ideapad-s145";
-
-    # Enable networking
     networkmanager.enable = true;
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     firewall.enable = true;
-
   };
-  
 
-  # Set your time zone.
+  # Locales
   time.timeZone = "Australia/Brisbane";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.utf8";
 
-  # Custom nix options
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-
-  # Enable the X11 windowing system.
+  # Services
   services = {
-
     udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
-    
-    # Enable gnome keyring.
-    gnome.gnome-keyring.enable = true;
-
-    # Enable the OpenSSH daemon.
-    # openssh.enable = true;
-
-    # Enable CUPS to print documents.
-    printing.enable = true;
-
-    # Enable flatpak.
+    gnome.gnome-keyring.enable = true; # for stuff like passwords
+    printing.enable = true; # enable printing support with CUPS
     flatpak.enable = true;
-
-    xserver = {
-      
-      enable = true;
-
-      # Configure keymap in X11
-      layout = "au";
-      xkbVariant = "";
-      
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
-
   };
+  
+  # Desktop Environment stuff
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
+    # Configure keymap in X11
+    layout = "au";
+    xkbVariant = "";
+  };
+  environment.gnome.excludePackages = (with pkgs.gnome; [
+    epiphany evince geary
+    gnome-contacts gnome-characters
+    gnome-calendar gnome-font-viewer gnome-maps
+    gnome-music gnome-shell-extensions gnome-weather
+  ]) ++ (with pkgs; [
+    gnome-connections gnome-tour
+  ]);
 
   programs = {
-
     ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+    dconf.enable = true;
+    zsh.enable = true;
+    neovim.enable = true;
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -117,13 +86,6 @@ in
       enable = true;
       pinentryFlavor = "gnome3";
     };
-
-    dconf.enable = true;
-
-    zsh.enable = true;
-
-    neovim.enable = true;
-
   };
 
   # Enable sound with pipewire.
@@ -143,39 +105,21 @@ in
 
   # Enable bluetooth.
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  systemd.services.blueman.serviceConfig = {
-    Environment = "DISPLAY=:0.0";
-  };
 
   # Enable virtualisation.
-  virtualisation = {
-    libvirtd.enable = true;
-  };
-
-  # Change mouse and touchpad settings for X11
-  services.xserver.libinput = {
-    enable = true;
-
-    mouse = {
-      accelProfile = "flat"; 
-      naturalScrolling = false;
-    };
-    touchpad = {
-      accelProfile = "flat";
-      naturalScrolling = true;
-      sendEventsMode = "disabled-on-external-mouse";
-    };
-  };
+  virtualisation.libvirtd.enable = true;
 
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
+  # Custom nix options
   nixpkgs.config = {
     allowUnfree = true;
-    allowUnfreePredicate = _: true; # added due to something broke 
+    allowUnfreePredicate = _: true;
   };
-
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # Packages you want to be installed in the system profile.
   environment.systemPackages = [
