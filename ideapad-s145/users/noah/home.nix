@@ -39,7 +39,7 @@ in
       pkgs.kate
       pkgs.adw-gtk3
       
-      pkgs.atuin
+      pkgs.pazi
       pkgs.exa
       pkgs.bat
       pkgs.helix
