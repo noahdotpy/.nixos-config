@@ -58,7 +58,7 @@ in
 
     # Enable networking
     networkmanager.enable = true;
-    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     firewall.enable = true;
 
   };
@@ -151,7 +151,6 @@ in
   # Enable virtualisation.
   virtualisation = {
     libvirtd.enable = true;
-    virtualbox.host.enable = true;
   };
 
   # Change mouse and touchpad settings for X11
