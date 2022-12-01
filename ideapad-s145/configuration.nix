@@ -189,10 +189,6 @@ in
     pkgs.wget
     pkgs.curl
     pkgs.git
-    
-    pkgs.atuin
-    pkgs.pfetch
-    pkgs.starship
 
     pkgs.pinentry
     pkgs.gnome.dconf-editor

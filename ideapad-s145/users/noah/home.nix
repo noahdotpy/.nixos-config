@@ -38,6 +38,18 @@ in
       pkgs.vscode
       pkgs.kate
       pkgs.adw-gtk3
+      
+      pkgs.atuin
+      pkgs.exa
+      pkgs.bat
+      pkgs.helix
+      pkgs.ferium
+      pkgs.ripgrep
+      pkgs.fd
+      
+      pkgs.atuin
+      pkgs.pfetch
+      pkgs.starship
   ];
   
   # This value determines the Home Manager release that your
