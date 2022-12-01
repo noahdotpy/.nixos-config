@@ -179,22 +179,11 @@ in
 
   # Packages you want to be installed in the system profile.
   environment.systemPackages = [
-    # Internet
-    pkgs.firefox
-
-    # Multi-media
-    pkgs.vlc
-
-    # Tools
     pkgs.wget
     pkgs.curl
     pkgs.git
 
     pkgs.pinentry
-    pkgs.gnome.dconf-editor
-
-    # Libraries
-    pkgs.gnome-menus # needed for arc menu extension to work
   ];
 
   # This value determines the NixOS release from which the default

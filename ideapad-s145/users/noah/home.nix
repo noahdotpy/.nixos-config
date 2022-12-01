@@ -35,8 +35,13 @@ in
   };
 
   home.packages = [
+      pkgs.firefox
+      pkgs.vlc
+
+      pkgs.gnome.dconf-editor
+      pkgs.gnome-menus # needed for arc menu extension to work
+
       pkgs.vscode
-      pkgs.kate
       pkgs.adw-gtk3
       
       pkgs.pazi
