@@ -1,5 +1,5 @@
 {
-  description = "noahdotpy's very own home baked ( + some stolen dough ) NixOS config";
+  description = "my nixos config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; 
@@ -29,7 +29,6 @@
       config = { allowUnfree = true; };
     };
 
-
     overlay-unstable = final: prev: {
       unstable = import nixpkgs-unstable {
         inherit system;
@@ -43,13 +42,10 @@
         config = { allowUnfree = true; };
       };
     };
-
-    lib = nixpkgs.lib;
-    
   in {
     
     nixosConfigurations = {
-      ideapad-s145 = lib.nixosSystem {
+      ideapad-s145 = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         
@@ -57,10 +53,30 @@
           # Make the overlays available
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-stable ]; })
           home-manager.nixosModules.home-manager # Allow home-manager as a NixOS module in flakes
-          ./ideapad-s145/configuration.nix
+          ./nixos/configurations/ideapad-s145
         ];
       };
     };
 
+    homeConfigurations = {
+      noah = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home/configurations/noah ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
+    };
+
+    # Devshell for bootstrapping
+    # Accessible through 'nix develop' or 'nix-shell' (legacy)
+    devShell.x86_64-linux = pkgs.mkShell {
+      # Enable experimental features without having to specify the argument
+      NIX_CONFIG = "experimental-features = nix-command flakes";
+      nativeBuildInputs = with pkgs; [ nix home-manager git ];
+    };
   };
 }

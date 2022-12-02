@@ -7,8 +7,8 @@ in
 
   imports =
   [
-      ./associations.nix
-      # ./apps/text-editors/neovim
+      ./modules/associations.nix
+      ./modules/programs/packages.nix
   ];
 
   nixpkgs.config = {
@@ -22,40 +22,6 @@ in
   # paths it should manage.
   home.username = "noah";
   home.homeDirectory = "/home/noah";
-
-  programs = {
-
-    # kitty = {
-      # enable = true;
-      # theme = "Tokyo Night";
-      # settings = {
-        # confirm_os_window_close = 0;
-      # };
-    # };
-  };
-
-  home.packages = [
-      pkgs.firefox
-      pkgs.vlc
-
-      pkgs.gnome.dconf-editor
-      pkgs.gnome-menus # needed for arc menu extension to work
-
-      pkgs.vscode
-      pkgs.adw-gtk3
-      
-      pkgs.pazi
-      pkgs.exa
-      pkgs.bat
-      pkgs.helix
-      pkgs.ferium
-      pkgs.ripgrep
-      pkgs.fd
-      
-      pkgs.atuin
-      pkgs.pfetch
-      pkgs.starship
-  ];
   
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

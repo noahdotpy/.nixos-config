@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  home-manager.users."noah" = import ./home.nix;
-
   users.users = {
     noah = {
       isNormalUser = true;

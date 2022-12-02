@@ -12,8 +12,10 @@ in
 {
   imports =
   [
-    ./hardware-configuration.nix
-    ./users/noah
+    ./modules/hardware-configuration.nix
+    ./modules/gnome.nix
+
+    ./modules/users/noah.nix
   ];
 
   fonts = {
@@ -54,25 +56,6 @@ in
     flatpak.enable = true;
   };
   
-  # Desktop Environment stuff
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-
-    # Configure keymap in X11
-    layout = "au";
-    xkbVariant = "";
-  };
-  environment.gnome.excludePackages = (with pkgs.gnome; [
-    epiphany evince geary
-    gnome-contacts gnome-characters
-    gnome-calendar gnome-font-viewer gnome-maps
-    gnome-music gnome-shell-extensions gnome-weather
-  ]) ++ (with pkgs; [
-    gnome-connections gnome-tour
-  ]);
-
   programs = {
     ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
     dconf.enable = true;
