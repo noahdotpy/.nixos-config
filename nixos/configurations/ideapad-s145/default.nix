@@ -12,10 +12,9 @@ in
 {
   imports =
   [
-    ./modules/hardware-configuration.nix
-    ./modules/gnome.nix
-
+    ./modules/x11
     ./modules/users/noah.nix
+    ./modules/hardware-configuration.nix
   ];
 
   fonts = {
