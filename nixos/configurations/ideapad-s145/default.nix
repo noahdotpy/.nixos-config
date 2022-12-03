@@ -1,17 +1,17 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
-
-{ config, pkgs, inputs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   nur = import inputs.nurpkgs {
     inherit pkgs;
     nurpkgs = pkgs;
   };
-in
-{
-  imports =
-  [
+in {
+  imports = [
     ./modules/x11
     ./modules/users/noah.nix
     ./modules/hardware-configuration.nix
@@ -20,7 +20,7 @@ in
   fonts = {
     fontDir.enable = true;
     enableDefaultFonts = true;
-    fonts = [(pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; })];
+    fonts = [(pkgs.nerdfonts.override {fonts = ["Iosevka"];})];
   };
 
   boot = {
@@ -49,12 +49,12 @@ in
 
   # Services
   services = {
-    udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+    udev.packages = [pkgs.gnome.gnome-settings-daemon];
     gnome.gnome-keyring.enable = true; # for stuff like passwords
     printing.enable = true; # enable printing support with CUPS
     flatpak.enable = true;
   };
-  
+
   programs = {
     ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
     dconf.enable = true;
@@ -91,7 +91,7 @@ in
   # Enable virtualisation.
   virtualisation.libvirtd.enable = true;
 
-  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+  users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
 
   # Custom nix options
   nixpkgs.config = {
@@ -100,7 +100,7 @@ in
   };
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   # Packages you want to be installed in the system profile.
@@ -119,5 +119,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }

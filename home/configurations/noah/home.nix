@@ -1,28 +1,28 @@
-{ config, pkgs, ... }:
-
-let
-  nixpkgsConfig = if config.nixpkgs.config == null then {} else config.nixpkgs.config;
-in
 {
-
-  imports =
-  [
-      ./modules/associations.nix
-      ./modules/programs/packages.nix
+  config,
+  pkgs,
+  ...
+}: let
+  nixpkgsConfig =
+    if config.nixpkgs.config == null
+    then {}
+    else config.nixpkgs.config;
+in {
+  imports = [
+    ./modules/associations.nix
+    ./modules/programs/packages.nix
   ];
 
   nixpkgs.config = {
-
     allowUnfree = true;
     allowUnfreePredicate = _: true;
-    
   };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "noah";
   home.homeDirectory = "/home/noah";
-  
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

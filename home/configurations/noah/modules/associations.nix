@@ -1,6 +1,6 @@
 let
-  browser = [ "firefox.desktop" ];
-  editor = [ "nvim" ];
+  browser = ["firefox.desktop"];
+  editor = ["nvim"];
 
   xdgAssociations = {
     "text/html" = browser;

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # home-manager.users."noah" = import ./home.nix;
 
   # users.users = {
@@ -10,5 +9,5 @@
   #     shell = pkgs.zsh;
   #   };
   # };
-  imports = [ ./home.nix ];
+  imports = [./home.nix];
 }
