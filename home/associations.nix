@@ -2,6 +2,16 @@ let
   browser = ["firefox.desktop"];
   editor = ["nvim"];
 
+  browserBin = "firefox";
+  editorBin = "nvim";
+
+  sessionVariables = {
+    BROWSER = browserBin;
+    EDITOR = editorBin;
+    TERMINAL = "kgx";
+    TERM = "xterm";
+  };
+
   xdgAssociations = {
     "text/html" = browser;
     "x-scheme-handler/http" = browser;
@@ -29,12 +39,8 @@ let
     "x-scheme-handler/discord" = ["com.discordapp.Discord.desktop"];
   };
 in {
-  home.sessionVariables = {
-    BROWSER = browser;
-    EDITOR = editor;
-    TERMINAL = "kgx";
-    TERM = "xterm";
-  };
+  home.sessionVariables = sessionVariables;
+  systemd.user.sessionVariables = sessionVariables;
 
   xdg.mimeApps.enable = true;
   xdg.mimeApps.associations.added = xdgAssociations;
