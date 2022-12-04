@@ -11,6 +11,7 @@ in {
   imports = [
     ./modules/associations.nix
     ./modules/programs/packages.nix
+    ./modules/programs/neovim.nix
   ];
 
   nixpkgs.config = {
