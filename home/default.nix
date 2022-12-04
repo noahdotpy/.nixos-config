@@ -2,22 +2,13 @@
   config,
   pkgs,
   ...
-}: let
-  nixpkgsConfig =
-    if config.nixpkgs.config == null
-    then {}
-    else config.nixpkgs.config;
-in {
+}: {
   imports = [
-    ./modules/associations.nix
-    ./modules/programs/packages.nix
-    ./modules/programs/neovim.nix
+    ../shared/nix.nix
+    ./associations.nix
+    ./programs/packages.nix
+    ./programs/neovim.nix
   ];
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = _: true;
-  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

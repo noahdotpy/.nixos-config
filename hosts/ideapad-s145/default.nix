@@ -12,9 +12,10 @@
   };
 in {
   imports = [
-    ./modules/x11
-    ./modules/users/noah.nix
-    ./modules/hardware-configuration.nix
+    ../../shared/nix.nix
+    ./x11
+    ./users/noah.nix
+    ./hardware-configuration.nix
   ];
 
   fonts = {
@@ -94,10 +95,6 @@ in {
   users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
 
   # Custom nix options
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = _: true;
-  };
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];

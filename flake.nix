@@ -1,20 +1,6 @@
 {
   description = "my nixos config";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nurpkgs.url = "github:nix-community/NUR";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
-  };
-
   outputs = {...} @ inputs: let
     system = "x86_64-linux";
 
@@ -42,8 +28,8 @@
   in
     inputs.flake-parts.lib.mkFlake {inherit (inputs) self;} {
       imports = [
-        ./nixos/configurations
-        # ./home/configurations
+        ./parts/nixos.nix
+        # ./parts/home.nix
       ];
       systems = ["x86_64-linux"];
 
@@ -64,7 +50,7 @@
 
             # Specify your home configuration modules here, for example,
             # the path to your home.nix.
-            modules = [./home/configurations/noah];
+            modules = [./home];
 
             # Optionally use extraSpecialArgs
             # to pass through arguments to the modules (i.e: home.nix).
@@ -72,4 +58,20 @@
         };
       };
     };
+
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nurpkgs.url = "github:nix-community/NUR";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+  };
+
 }

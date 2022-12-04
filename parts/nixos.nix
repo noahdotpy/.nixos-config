@@ -7,7 +7,7 @@
       modules = [
         # Make the overlays available
         # ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-stable ]; })
-        ./ideapad-s145
+        ../hosts/ideapad-s145
       ];
     };
   };
