@@ -1,75 +1,41 @@
 {
-  description = "my nixos config";
-
-  outputs = {...} @ inputs: let
-    system = "x86_64-linux";
-
-    common-pkgs-config = {allowUnfree = true;};
-
-    pkgs = import inputs.nixpkgs {
-      inherit system;
-      config = {inherit common-pkgs-config;};
-    };
-
-    overlay-unstable = final: prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        inherit system;
-        inherit pkgs;
-        config = {inherit common-pkgs-config;};
-      };
-    };
-
-    overlay-stable = final: prev: {
-      stable = import inputs.nixpkgs-stable {
-        inherit system;
-        config = {inherit common-pkgs-config;};
-      };
-    };
-  in
-    inputs.flake-parts.lib.mkFlake {inherit (inputs) self;} {
-      imports = [
-        ./parts/nixos.nix
-        # ./parts/home.nix
-      ];
-      systems = ["x86_64-linux"];
-
-      flake = {
-        # # Devshell for bootstrapping
-        # # Accessible through 'nix develop' or 'nix-shell' (legacy)
-        devShell.x86_64-linux = pkgs.mkShell {
-          # Enable experimental features without having to specify the argument
-          NIX_CONFIG = "experimental-features = nix-command flakes";
-          nativeBuildInputs = with pkgs; [nix home-manager git alejandra];
-        };
-        # TODO: Eventually migrate this into ./home/configurations/default.nix, with
-        # overlay-stable and overlay-unstable available in both NixOS config and Home Manager config
-        # flake.homeConfigurations = {
-        homeConfigurations = {
-          noah = inputs.home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-
-            # Specify your home configuration modules here, for example,
-            # the path to your home.nix.
-            modules = [./home];
-
-            # Optionally use extraSpecialArgs
-            # to pass through arguments to the modules (i.e: home.nix).
-          };
-        };
-      };
-    };
+  description = "My NixOS configurations IaC";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nurpkgs.url = "github:nix-community/NUR";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nur.url = "github:nix-community/NUR";
+    devshell.url = "github:numtide/devshell";
   };
+
+  outputs = {self, ...} @ inputs: let
+    myLib = import ./lib/default.nix {inherit self inputs;};
+  in
+    inputs.flake-parts.lib.mkFlake {inherit self;} {
+      systems = ["x86_64-linux"];
+      perSystem = {
+        inputs',
+        pkgs,
+        ...
+      }: {
+        legacyPackages = import ./packages {inherit pkgs;};
+
+        devShells.default = inputs'.devshell.legacyPackages.mkShell {
+          packages = [
+            pkgs.alejandra
+            pkgs.git
+            pkgs.nix
+          ];
+          name = "dots";
+          # NIX_CONFIG = "experimental-features = nix-command flakes";
+        };
+        formatter = pkgs.alejandra;
+      };
+
+      flake.nixosConfigurations = {
+        ideapad-s145 = myLib.mkNixosSystem "x86_64-linux" "ideapad-s145" "noah";
+      };
+    };
 }
