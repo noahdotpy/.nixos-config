@@ -21,6 +21,7 @@
       multiplexer.tmux.enable = true;
 
       desktopenvironment.gnome.enable = true;
+      desktopenvironment.gnome.enableExtensions = true;
       displaymanager.gdm.enable = true;
 
       programs.cli.enable = true;

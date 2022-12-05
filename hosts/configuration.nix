@@ -47,6 +47,7 @@ in {
     autoUpgrade = {
       enable = true;
       flake = builtins.toString ../.;
+      operation = "boot";
     };
     stateVersion = "22.05";
   };
