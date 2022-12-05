@@ -16,12 +16,16 @@
 
       # All of the available modules are listed below
       # Uncomment/comment do enable/disable module
-      editor.neovim.enable = true;
+      # editor.neovim.enable = true;
 
       multiplexer.tmux.enable = true;
 
       windowmanager.i3.enable = true;
+      desktopenvironment.plasma.enable = true;
+      displaymanager.sddm.enable = true;
     };
+
+    environment.systemPackages = with pkgs; [git wget curl pinentry];
 
     boot = {
       # Enable the bootloader.

@@ -19,6 +19,7 @@ in {
       # TODO: Implement plasma.isDefault
     # })
     (mkIf cfg.enable {
+      services.xserver.enable = true;
       services.xserver.desktopManager.plasma5 = {
         enable = true;
         excludePackages = [

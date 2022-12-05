@@ -12,13 +12,10 @@ in {
     shell = pkgs.fish;
   };
 
-  # Autologin
-  services.getty.autologinUser = deviceCfg.username;
-  services.greetd.settings.initial_session.user = deviceCfg.username;
-  services.greetd.settings.default_session.user = deviceCfg.username;
-  services.xserver.displayManager.autoLogin.user = deviceCfg.username;
-
   networking.hostName = deviceCfg.hostname;
+
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   time.timeZone = "Australia/Brisbane";
   i18n.defaultLocale = "en_AU.utf8";

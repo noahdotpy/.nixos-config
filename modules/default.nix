@@ -37,5 +37,7 @@
 
     ./desktopenvironment/gnome
     ./desktopenvironment/plasma
+
+    ./displaymanager/sddm
   ];
 }
