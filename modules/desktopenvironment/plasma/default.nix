@@ -1,12 +1,3 @@
-{pkgs, ...}:
-{
-  services.xserver.desktopManager.plasma5.excludePackages = [
-    pkgs.libsForQt5.elisa
-  ];
-}
-{pkgs, ...}:
-{
-}
 {
   pkgs,
   lib,
@@ -14,7 +5,7 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.desktopenvironment.plasm;
+  cfg = config.modules.desktopenvironment.plasma;
   device = config.modules.device;
 in {
   options.modules.desktopenvironment.plasma = {
@@ -23,12 +14,12 @@ in {
   };
 
   config = mkMerge [
-    (mkIf cfg.isDefault {
+    # (mkIf cfg.isDefault {
       # services.xserver.displayManager.defaultSession = "";
       # TODO: Implement plasma.isDefault
-    })
+    # })
     (mkIf cfg.enable {
-      services.xserver.desktopManager.plasma = {
+      services.xserver.desktopManager.plasma5 = {
         enable = true;
         excludePackages = [
           pkgs.libsForQt5.elisa
