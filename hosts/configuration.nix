@@ -9,7 +9,7 @@ in {
   users.users.${deviceCfg.username} = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "audio"];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   networking.hostName = deviceCfg.hostname;

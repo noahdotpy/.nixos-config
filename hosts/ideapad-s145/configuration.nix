@@ -20,12 +20,15 @@
 
       multiplexer.tmux.enable = true;
 
-      windowmanager.i3.enable = true;
-      desktopenvironment.plasma.enable = true;
-      displaymanager.sddm.enable = true;
+      desktopenvironment.gnome.enable = true;
+      displaymanager.gdm.enable = true;
 
       programs.cli.enable = true;
       programs.gui.enable = true;
+
+      editor.neovim.enable = true;
+
+      terminal-emulator.kitty.enable = true;
     };
 
     environment.systemPackages = with pkgs; [git wget curl pinentry];
