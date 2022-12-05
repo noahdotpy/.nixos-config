@@ -15,8 +15,8 @@ in {
 
   config = mkMerge [
     # (mkIf cfg.isDefault {
-      # services.xserver.displayManager.defaultSession = "";
-      # TODO: Implement plasma.isDefault
+    # services.xserver.displayManager.defaultSession = "";
+    # TODO: Implement plasma.isDefault
     # })
     (mkIf cfg.enable {
       services.xserver.enable = true;
