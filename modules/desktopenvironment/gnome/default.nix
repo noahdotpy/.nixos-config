@@ -42,8 +42,6 @@ in {
     (mkIf cfg.enable {
       services.xserver.desktopManager.gnome.enable = true;
       environment.systemPackages = with pkgs; [
-        gnome.dconf-editor
-        gnome-menus
         adw-gtk3
       ];
       environment.gnome.excludePackages =
