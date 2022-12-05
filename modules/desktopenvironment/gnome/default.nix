@@ -10,6 +10,7 @@ with lib; let
 in {
   options.modules.desktopenvironment.gnome = {
     enable = mkEnableOption "gnome";
+    enableExtensions = mkEnableOption "gnome extensions";
     # isDefault = mkEnableOption "set gnome as default display manager session";
   };
 
@@ -17,6 +18,26 @@ in {
     (mkIf cfg.isDefault {
       # services.xserver.displayManager.defaultSession = "";
       # TODO: Implement gnome.isDefault
+    })
+    (mkIf cfg.enableExtensions {
+      home.manager.home.packages = with pkgs.gnomeExtensions; [
+        alphabetical-app-grid
+        appindicator
+        arcmenu
+        battery-time
+        bluetooth-quick-connect
+        blur-my-shell
+        custom-hot-corners-extended
+        dash-to-dock
+        extensions-sync
+        gsconnect
+        just-perfection
+        lock-keys
+        media-controls
+        simple-system-monitor
+        simply-workspaces
+        snowy
+      ];
     })
     (mkIf cfg.enable {
       services.xserver.desktopManager.gnome.enable = true;
