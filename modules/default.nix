@@ -39,5 +39,8 @@
     ./desktopenvironment/plasma
 
     ./displaymanager/sddm
+
+    ./programs/cli
+    ./programs/gui
   ];
 }

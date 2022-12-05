@@ -23,6 +23,9 @@
       windowmanager.i3.enable = true;
       desktopenvironment.plasma.enable = true;
       displaymanager.sddm.enable = true;
+
+      programs.cli.enable = true;
+      programs.gui.enable = true;
     };
 
     environment.systemPackages = with pkgs; [git wget curl pinentry];

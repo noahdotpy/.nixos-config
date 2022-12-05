@@ -19,6 +19,10 @@ in {
       # TODO: Implement gnome.isDefault
     })
     (mkIf cfg.enable {
+      environment.systemPackages = with pkgs; [
+        gnome.dconf-editor
+        gnome-menus
+      ];
       environment.gnome.excludePackages =
         (with pkgs.gnome; [
           # pkgs.gnome.*
