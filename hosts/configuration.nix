@@ -21,6 +21,7 @@ in {
   networking.hostName = deviceCfg.hostname;
 
   time.timeZone = "Australia/Brisbane";
+  i18n.defaultLocale = "en_AU.utf8";
 
   security.polkit.enable = true;
 

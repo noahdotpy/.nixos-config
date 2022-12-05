@@ -34,5 +34,8 @@
     ./windowmanager/add-on/thunar
     ./windowmanager/add-on/waybar
     ./windowmanager/add-on/xdg
+
+    ./desktopenvironment/gnome
+    ./desktopenvironment/plasma
   ];
 }
