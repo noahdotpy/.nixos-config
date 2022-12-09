@@ -11,13 +11,15 @@ in {
   options.modules.system.sound = {enable = mkEnableOption "sound";};
 
   config = mkIf (cfg.enable && device.hasSound) {
-    # security.rtkit.enable = true;
+    sound.enable = true;
+    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    hardware.pulseaudio.enable = false;
     environment.etc = mkIf device.hasBluetooth {
       "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
         bluez_monitor.properties = {

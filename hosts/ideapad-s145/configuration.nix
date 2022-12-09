@@ -5,6 +5,8 @@
 }: {
   config = {
     modules = {
+      system.sound.enable = true;
+
       # Device specific options
       device = {
         cpu = "intel";
@@ -18,21 +20,27 @@
       # Uncomment/comment do enable/disable module
       # editor.neovim.enable = true;
 
-      multiplexer.tmux.enable = true;
+      associations.mime.enable = true;
+      associations.sessionVariables.enable = true;
 
-      desktopenvironment.gnome.enable = true;
-      desktopenvironment.gnome.enableExtensions = true;
-      displaymanager.gdm.enable = true;
+      desktopenvironment.plasma.enable = true;
+      displaymanager.sddm.enable = true;
 
       programs.cli.enable = true;
       programs.gui.enable = true;
 
       editor.neovim.enable = true;
 
+      multiplexer.tmux.enable = true;
+
       terminal-emulator.kitty.enable = true;
     };
 
+    hardware.bluetooth.enable = true;
+
     environment.systemPackages = with pkgs; [git wget curl pinentry];
+    
+    virtualisation.podman.enable = true;
 
     boot = {
       # Enable the bootloader.

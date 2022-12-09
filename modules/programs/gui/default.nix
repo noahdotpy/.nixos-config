@@ -14,6 +14,8 @@ in {
       vscode
       firefox
       vlc
+      spotify
+      discord
     ];
   };
 }
