@@ -10,6 +10,9 @@
     ./device.nix
     # Home manager alias
     ./home-manager.nix
+
+    ./associations.nix
+
     ./editor/neovim
 
     ./multiplexer/tmux
@@ -37,6 +40,8 @@
 
     ./desktopenvironment/gnome
     ./desktopenvironment/plasma
+    ./desktopenvironment/xfce
+    ./desktopenvironment/cinnamon
 
     ./displaymanager/sddm
     ./displaymanager/gdm
