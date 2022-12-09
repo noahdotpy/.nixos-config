@@ -19,6 +19,7 @@ in {
     # TODO: Implement plasma.isDefault
     # })
     (mkIf cfg.enable {
+      home.manager.xsession.enable = true;
       services.xserver.enable = true;
       services.xserver.desktopManager.plasma5 = {
         enable = true;
@@ -26,6 +27,9 @@ in {
           pkgs.libsForQt5.elisa
         ];
       };
+      environment.systemPackages = with pkgs; [
+        libsForQt5.kamoso 
+      ];
     })
   ];
 }

@@ -27,6 +27,7 @@ in {
         battery-time
         bluetooth-quick-connect
         blur-my-shell
+        clipboard-history
         custom-hot-corners-extended
         dash-to-dock
         extensions-sync
@@ -40,6 +41,7 @@ in {
       ];
     })
     (mkIf cfg.enable {
+      home.manager.xsession.enable = true;
       services.xserver.desktopManager.gnome.enable = true;
       environment.systemPackages = with pkgs; [
         adw-gtk3
