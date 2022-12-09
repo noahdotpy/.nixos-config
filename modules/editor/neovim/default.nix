@@ -20,7 +20,25 @@ in {
           vim-rhubarb
           gitsigns-nvim
           comment-nvim
-          nvim-treesitter
+          {
+            plugin = nvim-treesitter.withPlugins (plugins: with plugins; [
+              tree-sitter-bash
+              tree-sitter-comment
+              tree-sitter-dockerfile
+              tree-sitter-fish
+              tree-sitter-go
+              tree-sitter-html
+              tree-sitter-json
+              tree-sitter-json5
+              tree-sitter-lua
+              tree-sitter-nix
+              tree-sitter-python
+              tree-sitter-regex
+              tree-sitter-typescript
+              tree-sitter-vim
+              tree-sitter-yaml
+            ]);
+          }
           nvim-lspconfig
           nvim-cmp
           luasnip
@@ -35,7 +53,6 @@ in {
           dashboard-nvim
           bufferline-nvim
           nvim-lastplace
-          pears-nvim
           which-key-nvim
           hop-nvim
           telescope-fzf-native-nvim
