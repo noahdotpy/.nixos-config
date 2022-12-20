@@ -33,7 +33,8 @@ in {
           vim-rhubarb
           gitsigns-nvim
           comment-nvim
-          (nvim-treesitter.withPlugins (plugins: with plugins; [
+          (nvim-treesitter.withPlugins (plugins:
+            with plugins; [
               tree-sitter-bash
               tree-sitter-comment
               tree-sitter-dockerfile
@@ -49,7 +50,7 @@ in {
               tree-sitter-typescript
               tree-sitter-vim
               tree-sitter-yaml
-          ]))
+            ]))
           nvim-lspconfig
           nvim-cmp
           luasnip
