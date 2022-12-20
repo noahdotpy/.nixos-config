@@ -32,8 +32,6 @@
       editor.neovim.enable = true;
 
       multiplexer.tmux.enable = true;
-
-      terminal-emulator.kitty.enable = true;
     };
 
     hardware.bluetooth.enable = true;
@@ -44,6 +42,9 @@
 
     boot = {
       # Enable the bootloader.
+      initrd.verbose = false;
+      consoleLogLevel = 0;
+      kernelParams = [ "quiet" "rd.udev.log_level=3" ];
       loader = {
         systemd-boot.enable = true;
         timeout = 3;
