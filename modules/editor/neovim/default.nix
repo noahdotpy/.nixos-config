@@ -13,21 +13,18 @@ in {
 
   config = mkIf cfg.enable {
     home.manager = {
+      xdg.configFile = {
+        "nvim" = {
+          source = ./config;
+          recursive = true;
+        };
+        "nvim/lua" = {
+          source = ./config/lua;
+          recursive = true;
+        };
+      };
       programs.neovim = {
         enable = true;
-        extraConfig = let
-          luaRequire = module:
-            builtins.readFile (builtins.toString ./config + "/${module}.lua");
-          luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-            "mappings"
-            "plugin_configs"
-            "settings"
-          ]);
-        in ''
-          lua << EOF
-          ${luaConfig}
-          EOF
-        '';
         plugins = with vimPlugins; [
           vim-fugitive
           vim-rhubarb
