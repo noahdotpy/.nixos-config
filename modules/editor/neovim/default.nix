@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.modules.editor.neovim;
-  vimPlugins = pkgs.vimPlugins // config.nur.repos.m15a.vimExtraPlugins // myPkgs.nvim-plugins;
+  vimPlugins = pkgs.vimPlugins // pkgs.tree-sitter-grammars // config.nur.repos.m15a.vimExtraPlugins // myPkgs.nvim-plugins;
 in {
   options.modules.editor.neovim = {enable = mkEnableOption "neovim";};
 
@@ -25,13 +25,26 @@ in {
       };
       programs.neovim = {
         enable = true;
+        extraPackages = with pkgs; [
+          rust-analyzer
+        ];
         plugins = with vimPlugins; [
           vim-fugitive
           vim-rhubarb
           gitsigns-nvim
           comment-nvim
+          vim-svelte
+          coc-svelte
+          coc-rust-analyzer
+          coc-rls
+          rust-vim
+          vim-polyglot
+          rust-tools-nvim
+          filetype-nvim
           (nvim-treesitter.withPlugins (plugins:
             with plugins; [
+              tree-sitter-svelte
+              tree-sitter-rust
               tree-sitter-bash
               tree-sitter-comment
               tree-sitter-dockerfile
