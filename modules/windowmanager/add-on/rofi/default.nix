@@ -20,14 +20,14 @@ in {
       enable = true;
       package = mkIf config.modules.device.isWayland pkgs.rofi-wayland;
       extraConfig = {
-        font = "UbuntuMono Nerd Font 12";
-        display-drun = " ";
+        font = "Iosevka Nerd Font 12";
+        width = 30;
+        line-margin = 10;
+        lines = 6;
+        columns = 2;
         show-icons = true;
-        drun-display-format = "{name}";
-        disable-history = false;
-        sidebar-mode = false;
       };
-      theme = ./style.rasi;
+      theme = ./themes/tokyonight.rasi;
     };
   };
 }

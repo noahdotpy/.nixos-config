@@ -13,7 +13,7 @@ with lib; let
 
   browserBin = "firefox";
   editorBin = "nvim";
-  terminalBin = "kgx";
+  terminalBin = "kitty";
 
   sessionVariables = {
     BROWSER = browserBin;
