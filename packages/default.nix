@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  nvim-plugins = pkgs.callPackage ./nvim-plugins/default.nix {};
+  vimPlugins = pkgs.callPackage ./vimPlugins/default.nix {};
 }

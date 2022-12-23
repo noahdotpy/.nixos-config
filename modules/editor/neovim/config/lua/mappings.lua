@@ -25,15 +25,19 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 --- => FILE NAVIGATION <= ---
 -----------------------------
 
--- requires plugin github:phaazon/hop.nvim
-vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
-vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 --------------------------
 --- => FILE CONTENT <= ---
 --------------------------
+
+
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 vim.keymap.set('n', '<S-Tab>', '<<', { silent = true, desc = '[Shift+Tab] Unindent line' })
 vim.keymap.set('n', '<Tab>', '>>', { silent = true, desc = '[Tab] Indent line' })
@@ -42,6 +46,10 @@ vim.keymap.set('n', '<Tab>', '>>', { silent = true, desc = '[Tab] Indent line' }
 vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = '[Leader+y] Yank to system clipboard' })
 vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', { silent = true, desc = '[Leader+p] Paste from system clipboard' })
 
+vim.keymap.set('x', 'p', '\"_dP')
+
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 ------------------------
 --- => UI TOGGLES <= ---
 ------------------------

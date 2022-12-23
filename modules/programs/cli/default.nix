@@ -14,6 +14,8 @@ in {
       brightnessctl
     ];
     home.manager.home.packages = with pkgs; [
+      tig
+
       pazi
       exa
       bat
