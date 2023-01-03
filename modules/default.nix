@@ -25,7 +25,6 @@
     ./terminal-emulator/kitty
 
     ./windowmanager/i3
-    ./windowmanager/xmonad
     ./windowmanager/sway
     ./windowmanager/add-on/blueman-applet
     ./windowmanager/add-on/dunst

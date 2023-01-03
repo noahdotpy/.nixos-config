@@ -29,6 +29,7 @@ in {
       };
       environment.systemPackages = with pkgs; [
         libsForQt5.kamoso
+        libsForQt5.kcharselect
       ];
     })
   ];

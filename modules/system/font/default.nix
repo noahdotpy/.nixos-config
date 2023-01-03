@@ -11,7 +11,10 @@ in {
 
   config = mkIf cfg.enable {
     fonts = {
-      fonts = with pkgs; [(nerdfonts.override {fonts = ["Iosevka"];})];
+      enableDefaultFonts = true;
+      fonts = with pkgs; [
+        (nerdfonts.override {fonts = ["Iosevka"];})
+      ];
     };
   };
 }

@@ -19,6 +19,7 @@ in {
 
   time.timeZone = "Australia/Brisbane";
   i18n.defaultLocale = "en_AU.utf8";
+  i18n.supportedLocales = ["all"];
 
   security.polkit.enable = true;
 

@@ -1,0 +1,8 @@
+configuration {
+  columns: 2;
+  line-margin: 10;
+  lines: 6;
+  show-icons: true;
+  width: 30;
+}
+@theme "themes/tokyonight.rasi"

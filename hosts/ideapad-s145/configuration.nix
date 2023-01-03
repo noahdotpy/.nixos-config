@@ -23,7 +23,7 @@
       associations.mime.enable = true;
       associations.sessionVariables.enable = true;
 
-      windowmanager.i3.enable = true;
+      desktopenvironment.plasma.enable = true;
       displaymanager.sddm.enable = true;
 
       programs.cli.enable = true;

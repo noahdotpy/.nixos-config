@@ -1,4 +1,4 @@
-  {
+{
   pkgs,
   lib,
   config,
@@ -16,7 +16,6 @@ in {
         #################################
         #             Shadows           #
         #################################
-
 
         # Enabled client-side shadows on windows. Note desktop windows
         # (windows with '_NET_WM_WINDOW_TYPE_DESKTOP') never get shadow,
@@ -79,11 +78,9 @@ in {
         # Crop shadow of a window fully on a particular Xinerama screen to the screen.
         # xinerama-shadow-crop = false
 
-
         #################################
         #           Fading              #
         #################################
-
 
         # Fade windows in/out when opening/closing and when opacity changes,
         #  unless no-fading-openclose is used.
@@ -110,11 +107,9 @@ in {
         # Do not fade destroyed ARGB windows with WM frame. Workaround of bugs in Openbox, Fluxbox, etc.
         # no-fading-destroyed-argb = false
 
-
         #################################
         #   Transparency / Opacity      #
         #################################
-
 
         # Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
         # inactive-opacity = 1
@@ -136,7 +131,7 @@ in {
 
         # Specify a list of conditions of windows that should never be considered focused.
         # focus-exclude = []
-        focus-exclude = [ "class_g = 'Cairo-clock'" ];
+        focus-exclude = ["class_g = 'Cairo-clock'"];
 
         # Use fixed inactive dim value, instead of adjusting according to window opacity.
         # inactive-dim-fixed = 1.0
@@ -149,7 +144,6 @@ in {
         #    opacity-rule = [ "80:class_g = 'URxvt'" ];
         #
         # opacity-rule = []
-
 
         #################################
         #           Corners             #
@@ -166,11 +160,9 @@ in {
           "window_type = 'desktop'"
         ];
 
-
         #################################
         #     Background-Blurring       #
         #################################
-
 
         # Parameters for background blurring, see the *BLUR* section for more information.
         # blur-method =
@@ -193,10 +185,8 @@ in {
         #
         # blur-background-frame = false
 
-
         # Use fixed blur strength rather than adjusting according to window opacity.
         # blur-background-fixed = false
-
 
         # Specify the blur convolution kernel, with the following format:
         # example:
@@ -204,7 +194,6 @@ in {
         #
         # blur-kern = ""
         blur-kern = "3x3box";
-
 
         # Exclude conditions for background blur.
         # blur-background-exclude = []
@@ -428,9 +417,18 @@ in {
         #     you can set this to `true`.
         #
         wintypes = {
-          tooltip = { fade = true; shadow = true; opacity = 0.75; focus = true; full-shadow = false; };
-          dock = { shadow = false; clip-shadow-above = true; };
-          dnd = { shadow = false; };
+          tooltip = {
+            fade = true;
+            shadow = true;
+            opacity = 0.75;
+            focus = true;
+            full-shadow = false;
+          };
+          dock = {
+            shadow = false;
+            clip-shadow-above = true;
+          };
+          dnd = {shadow = false;};
         };
       };
     };
