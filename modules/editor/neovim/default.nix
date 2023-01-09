@@ -40,9 +40,6 @@ in {
             config = "lua require('Comment').setup{}";
           }
           vim-svelte
-          coc-svelte
-          coc-rust-analyzer
-          coc-rls
           rust-vim
           vim-polyglot
           rust-tools-nvim
@@ -67,7 +64,18 @@ in {
               tree-sitter-yaml
             ]))
           nvim-lspconfig
-          nvim-cmp
+          {
+            plugin = nvim-cmp;
+            config = "lua require('plugin-configs._cmp')";
+          }
+          cmp-nvim-lsp
+          cmp-buffer
+          cmp-path
+          cmp-cmdline
+          cmp_luasnip
+          tagalong-vim
+          vim-closetag
+          friendly-snippets
           luasnip
           onedark-nvim
           lualine-nvim
@@ -107,7 +115,6 @@ in {
           vim-javascript
           vimproc-vim
           tsuquyomi
-          YouCompleteMe
           editorconfig-vim
           syntastic
           auto-pairs
